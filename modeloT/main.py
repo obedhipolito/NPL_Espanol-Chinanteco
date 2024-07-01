@@ -19,7 +19,7 @@ def main():
     history = modelo.train_model(transformer, train_ds, val_ds)
     print("Entrenamiento del modelo completado.")
     
-    chi_tokenizer, spa_tokenizer = tokenizacion.get_tokenizers(chi_vocab, spa_vocab)
+    chi_tokenizer, spa_tokenizer = tokenizacion.tokenize_examples(chi_vocab, spa_vocab)
 
     # Realizar pruebas de traducción
     print("Realizando pruebas de traducción:")

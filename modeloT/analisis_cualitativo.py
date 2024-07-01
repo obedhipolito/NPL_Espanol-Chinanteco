@@ -2,6 +2,8 @@ import random
 import keras
 from keras import ops
 import keras_nlp
+import tokenizacion
+import limpieza
 
 MAX_SEQUENCE_LENGTH = 40
 
@@ -55,3 +57,19 @@ def test_model(transformer, chi_tokenizer, spa_tokenizer, test_pairs):
         print(input_sentence)
         print(translated)
         print()
+    
+def main():
+    # Cargar el modelo
+    transformer = keras.models.load_model("./transformer.h5")
+    
+    # Cargar los tokenizadores
+    train_pairs, _, test_pairs = limpieza.main()
+    reserved_tokens = ["[PAD]", "[UNK]", "[START]", "[END]"]
+    chi_vocab, spa_vocab = tokenizacion.create_vocabs(train_pairs, reserved_tokens)
+    chi_tokenizer, spa_tokenizer = tokenizacion.tokenize_examples(chi_vocab, spa_vocab, train_pairs)
+    
+    # Realizar el test
+    test_model(transformer, chi_tokenizer, spa_tokenizer, test_pairs)
+
+if __name__ == "__main__":
+    main()
