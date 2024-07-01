@@ -1,0 +1,10 @@
+# Ignorar archivos y directorios generados por Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignorar archivos de entorno virtual
+venv/
+env/
+*.h5
