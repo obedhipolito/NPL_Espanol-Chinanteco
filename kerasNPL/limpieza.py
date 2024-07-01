@@ -5,10 +5,14 @@ def load_and_prepare_data(text_file):
         lines = f.read().split("\n")[:-1]
     text_pairs = []
     for line in lines:
-        eng, spa = line.split("\t")
-        eng = eng.lower()
-        spa = spa.lower()
-        text_pairs.append((eng, spa))
+        parts = line.split("\t")
+        if len(parts) == 2:
+            eng, spa = parts
+            eng = eng.lower()
+            spa = spa.lower()
+            text_pairs.append((eng, spa))
+        else:
+            print(f"Warning: Skipping malformed line: {line}")
 
     random.shuffle(text_pairs)
     num_val_samples = int(0.15 * len(text_pairs))

@@ -1,13 +1,13 @@
 import keras_nlp
 import keras
 
-EPOCHS = 10  # This should be at least 10 for convergence
+EPOCHS = 2  # This should be at least 10 for convergence
 EMBED_DIM = 256
 INTERMEDIATE_DIM = 2048
 NUM_HEADS = 8
 ENG_VOCAB_SIZE = 15000
 SPA_VOCAB_SIZE = 15000
-MAX_SEQUENCE_LENGTH = 40
+MAX_SEQUENCE_LENGTH = 50
 
 #construccion del modelo
 def create_model():

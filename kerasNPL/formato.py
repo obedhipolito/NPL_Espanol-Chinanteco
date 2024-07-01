@@ -4,9 +4,9 @@ import keras_nlp
 import limpieza
 import tokenizacion
 
-MAX_SEQUENCE_LENGTH = 40
+MAX_SEQUENCE_LENGTH = 50
 #numero de pasos
-BATCH_SIZE = 64
+BATCH_SIZE = 80
 
 eng_tokenizer = None
 spa_tokenizer = None

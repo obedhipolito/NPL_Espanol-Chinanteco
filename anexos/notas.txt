@@ -1,0 +1,15 @@
+Modelo kerasNlp
+1.- limpieza (limpieza de los datos)
+2.- tokenizacion (tokenizacion de las palabras y prueba de la tokenizacion)
+3.- formato (formato y reglas para el entrenamiento)
+4.- Modelo (creacion y entrenamiento del modelo)
+5.- analisis_cualitativo
+5.-analisis_cuntitativo
+
+WordPiece de Keras
+
+si se pasa lowercase=False a true, pasara el texto a miniscula, podria ayudar a reducir la variacion de tokens
+
+SequenceToSequence
+
+
