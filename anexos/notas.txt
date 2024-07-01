@@ -1,10 +1,34 @@
 Modelo kerasNlp
 1.- limpieza (limpieza de los datos)
+Remover caracteres especiales no deseados.
+Normalizar el texto (por ejemplo, eliminando espacios en blanco adicionales).
+Verificar y corregir errores en el texto.
+
 2.- tokenizacion (tokenizacion de las palabras y prueba de la tokenizacion)
+Utilizar un tokenizador adecuado, como WordPiece, para dividir el texto en tokens.
+Probar el tokenizador con muestras de texto para asegurarse de que funciona correctamente.
+
 3.- formato (formato y reglas para el entrenamiento)
+Definir la longitud de secuencia para el entrenamiento.
+Aplicar padding o truncamiento a las secuencias de texto.
+Asegurarse de que el formato de los datos de entrada sea compatible con el modelo.
+
 4.- Modelo (creacion y entrenamiento del modelo)
+Construir el modelo, asegurándose de que las capas sean adecuadas para el problema.
+Compilar el modelo con el optimizador y la función de pérdida apropiados.
+Entrenar el modelo utilizando los datos preparados.
+
 5.- analisis_cualitativo
-5.-analisis_cuntitativo
+Evaluar los resultados del modelo de manera cualitativa.
+Revisar ejemplos de predicciones para identificar patrones o errores comunes.
+
+6.-analisis_cuntitativo
+Evaluar el rendimiento del modelo utilizando métricas cuantitativas como precisión, recall, F1-score, etc.
+Realizar validación cruzada o usar un conjunto de prueba para obtener una evaluación robusta del modelo.
+
+*Tamaño del vocabulario: El tamaño del vocabulario es un factor crucial que puede afectar varios aspectos del proceso de modelado. Un vocabulario muy grande puede incrementar el tiempo de entrenamiento y la complejidad del modelo, mientras que un vocabulario demasiado pequeño puede no capturar adecuadamente la diversidad del lenguaje. Se debe buscar un equilibrio adecuado.
+
+*los pasos se calculan dependiendo del tamaño del vocabulario 
 
 WordPiece de Keras
 
