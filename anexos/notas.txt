@@ -36,4 +36,5 @@ si se pasa lowercase=False a true, pasara el texto a miniscula, podria ayudar a 
 
 SequenceToSequence
 
+pip install https://github.com/nicechester/tensorflow-docker/raw/main/wheels/tensorflow_text-2.16.1-cp312-cp312-linux_aarch64.whl
 
