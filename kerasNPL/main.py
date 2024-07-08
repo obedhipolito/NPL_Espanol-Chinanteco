@@ -2,6 +2,7 @@ import limpieza
 import tokenizacion
 import formato
 import modelo
+from  kerasNPL.evaluacion import test_model
 
 def main():
     # Ejecutar el módulo limpieza
@@ -18,12 +19,6 @@ def main():
     transformer = modelo.create_model()
     history = modelo.train_model(transformer, train_ds, val_ds)
     print("Entrenamiento del modelo completado.")
-    
-    eng_tokenizer, spa_tokenizer = tokenizacion.tokenize_examples(eng_vocab, spa_vocab)
-
-    # Realizar pruebas de traducción
-    #print("Realizando pruebas de traducción:")
-    #modelo.test_model(transformer, eng_tokenizer, spa_tokenizer, test_pairs)
 
 if __name__ == "__main__":
     main()
