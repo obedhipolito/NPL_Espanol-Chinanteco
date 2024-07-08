@@ -7,11 +7,11 @@ import limpieza
 
 MAX_SEQUENCE_LENGTH = 40
 
-def decode_sequences(transformer, chi_tokenizer, spa_tokenizer, input_sentences):
+def decode_sequences(transformer, eng_tokenizer, spa_tokenizer, input_sentences):
     batch_size = 1
 
     # Tokenize the encoder input.
-    encoder_input_tokens = ops.convert_to_tensor(chi_tokenizer(input_sentences))
+    encoder_input_tokens = ops.convert_to_tensor(eng_tokenizer(input_sentences))
     if len(encoder_input_tokens[0]) < MAX_SEQUENCE_LENGTH:
         pads = ops.full((1, MAX_SEQUENCE_LENGTH - len(encoder_input_tokens[0])), 0)
         encoder_input_tokens = ops.concatenate(
@@ -41,11 +41,12 @@ def decode_sequences(transformer, chi_tokenizer, spa_tokenizer, input_sentences)
     generated_sentences = spa_tokenizer.detokenize(generated_tokens)
     return generated_sentences
 
-def test_model(transformer, chi_tokenizer, spa_tokenizer, test_pairs):
-    test_chi_texts = [pair[0] for pair in test_pairs]
+#prueba cualitativa
+def test_model_cualitative(transformer, eng_tokenizer, spa_tokenizer, test_pairs):
+    test_eng_texts = [pair[0] for pair in test_pairs]
     for i in range(2):
-        input_sentence = random.choice(test_chi_texts)
-        translated = decode_sequences([input_sentence])
+        input_sentence = random.choice(test_eng_texts)
+        translated = decode_sequences(transformer, eng_tokenizer, spa_tokenizer, [input_sentence])
         translated = translated.numpy()[0].decode("utf-8")
         translated = (
             translated.replace("[PAD]", "")
@@ -57,19 +58,50 @@ def test_model(transformer, chi_tokenizer, spa_tokenizer, test_pairs):
         print(input_sentence)
         print(translated)
         print()
+        
+#prueba cuantitativa
+def test_model_cuantitative(transformer, eng_tokenizer, spa_tokenizer, test_pairs):
+    rouge_1 = keras_nlp.metrics.RougeN(order=1)
+    rouge_2 = keras_nlp.metrics.RougeN(order=2)
     
+    for test_pair in test_pairs[:30]:
+        input_sentence = test_pair[0]
+        reference_sentence = test_pair[1]
+
+        translated_sentence = decode_sequences([input_sentence])
+        translated_sentence = translated_sentence.numpy()[0].decode("utf-8")
+        translated_sentence = (
+            translated_sentence.replace("[PAD]", "")
+            .replace("[START]", "")
+            .replace("[END]", "")
+            .strip()
+        )
+
+        rouge_1(reference_sentence, translated_sentence)
+        rouge_2(reference_sentence, translated_sentence)
+
+    print("ROUGE-1 Score: ", rouge_1.result())
+    print("ROUGE-2 Score: ", rouge_2.result())
+
+
 def main():
     # Cargar el modelo
     transformer = keras.models.load_model("./transformer.h5")
     
-    # Cargar los tokenizadores
+    # Ejecutar el módulo limpieza
     train_pairs, _, test_pairs = limpieza.main()
-    reserved_tokens = ["[PAD]", "[UNK]", "[START]", "[END]"]
-    chi_vocab, spa_vocab = tokenizacion.create_vocabs(train_pairs, reserved_tokens)
-    chi_tokenizer, spa_tokenizer = tokenizacion.tokenize_examples(chi_vocab, spa_vocab, train_pairs)
     
-    # Realizar el test
-    test_model(transformer, chi_tokenizer, spa_tokenizer, test_pairs)
+    # Crear los tokenizadores
+    reserved_tokens = ["[PAD]", "[UNK]", "[START]", "[END]"]
+    eng_vocab, spa_vocab = tokenizacion.create_vocabs(train_pairs, reserved_tokens)
+    eng_tokenizer, spa_tokenizer = tokenizacion.tokenize_examples(eng_vocab, spa_vocab, train_pairs)
+    
+    # Realizar pruebas de traducción cualitativas y cuantitativas
+    print("Realizando pruebas cualitativas de traducción:")
+    test_model_cualitative(transformer, eng_tokenizer, spa_tokenizer, test_pairs)
+    
+    print("Realizando pruebas cuantitativas de traducción:")
+    test_model_cuantitative(transformer, eng_tokenizer, spa_tokenizer, test_pairs)
 
 if __name__ == "__main__":
     main()

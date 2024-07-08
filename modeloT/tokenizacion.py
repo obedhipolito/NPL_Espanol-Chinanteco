@@ -2,7 +2,7 @@ import keras_nlp
 import tensorflow.data as tf_data
 import limpieza
 
-CHI_VOCAB_SIZE = 15000
+ENG_VOCAB_SIZE = 15000
 SPA_VOCAB_SIZE = 15000
 
 # Función para entrenar el tokenizador
@@ -18,28 +18,27 @@ def train_word_piece(text_samples, vocab_size, reserved_tokens):
 
 # Función para crear los vocabularios
 def create_vocabs(train_pairs, reserved_tokens):
-    chi_samples = [text_pair[0] for text_pair in train_pairs]
-    chi_vocab = train_word_piece(chi_samples, CHI_VOCAB_SIZE, reserved_tokens)
+    eng_samples = [text_pair[0] for text_pair in train_pairs]
+    eng_vocab = train_word_piece(eng_samples, ENG_VOCAB_SIZE, reserved_tokens)
 
     spa_samples = [text_pair[1] for text_pair in train_pairs]
     spa_vocab = train_word_piece(spa_samples, SPA_VOCAB_SIZE, reserved_tokens)
 
-    return chi_vocab, spa_vocab
+    return eng_vocab, spa_vocab
 
 # Función para tokenizar
-def tokenize_examples(chi_vocab, spa_vocab, text_pairs):
-    #configurar wordpiece tokenizers para traaajar con el chinanteco
-    chi_tokenizer = keras_nlp.tokenizers.WordPieceTokenizer(
-    vocabulary=chi_vocab, lowercase=False, strip_accents=False, split=True, special_tokens_in_strings=False)
+def tokenize_examples(eng_vocab, spa_vocab, text_pairs):
+    eng_tokenizer = keras_nlp.tokenizers.WordPieceTokenizer(
+    vocabulary=eng_vocab, lowercase=False)
     spa_tokenizer = keras_nlp.tokenizers.WordPieceTokenizer(
-    vocabulary=spa_vocab, lowercase=False, strip_accents=False)
+    vocabulary=spa_vocab, lowercase=False)
     
 	#realizar la tokenización de los ejemplos y mostrar los tokens y el texto recuperado después de la detokenización
-    chi_input_ex = text_pairs[0][0]
-    chi_tokens_ex = chi_tokenizer.tokenize(chi_input_ex)
-    print("Chinanteco sentence: ", chi_input_ex)
-    print("Tokens: ", chi_tokens_ex)
-    print("Recovered text after detokenizing: ", chi_tokenizer.detokenize(chi_tokens_ex),)
+    eng_input_ex = text_pairs[0][0]
+    eng_tokens_ex = eng_tokenizer.tokenize(eng_input_ex)
+    print("English sentence: ", eng_input_ex)
+    print("Tokens: ", eng_tokens_ex)
+    print("Recovered text after detokenizing: ", eng_tokenizer.detokenize(eng_tokens_ex),)
      
     print()
     spa_input_ex = text_pairs[0][1]
@@ -48,21 +47,21 @@ def tokenize_examples(chi_vocab, spa_vocab, text_pairs):
     print("Tokens: ", spa_tokens_ex)
     print("Recovered text after detokenizing: ", spa_tokenizer.detokenize(spa_tokens_ex),)
     
-    return chi_tokenizer, spa_tokenizer
+    return eng_tokenizer, spa_tokenizer
 
 def main():
     # Cargar los datos desde el módulo limpieza
     train_pairs, val_pairs, test_pairs = limpieza.main()
     
     reserved_tokens = ["[PAD]", "[UNK]", "[START]", "[END]"]
-    chi_vocab, spa_vocab = create_vocabs(train_pairs, reserved_tokens)
+    eng_vocab, spa_vocab = create_vocabs(train_pairs, reserved_tokens)
     
-    print("Chinanteco Tokens: ", chi_vocab[100:110])
+    print("English Tokens: ", eng_vocab[100:110])
     print("Spanish Tokens: ", spa_vocab[100:110])
     
-    tokenize_examples(chi_vocab, spa_vocab, train_pairs)
+    tokenize_examples(eng_vocab, spa_vocab, train_pairs)
 
-    return chi_vocab, spa_vocab
+    return eng_vocab, spa_vocab
 
 if __name__ == "__main__":
     main()

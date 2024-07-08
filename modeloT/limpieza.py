@@ -7,10 +7,10 @@ def load_and_prepare_data(text_file):
     for line in lines:
         parts = line.split("\t")
         if len(parts) == 2:
-            chi, spa = parts
-            chi = chi.lower()
+            eng, spa = parts
+            eng = eng.lower()
             spa = spa.lower()
-            text_pairs.append((chi, spa))
+            text_pairs.append((eng, spa))
         else:
             print(f"Warning: Skipping malformed line: {line}")
 

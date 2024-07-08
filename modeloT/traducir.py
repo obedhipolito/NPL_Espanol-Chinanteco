@@ -7,7 +7,7 @@ import limpieza
 
 # Asegúrate de que estas constantes coincidan con las usadas durante el entrenamiento
 MAX_SEQUENCE_LENGTH = 40
-CHI_VOCAB_SIZE = 15000
+ENG_VOCAB_SIZE = 15000
 SPA_VOCAB_SIZE = 15000
 
 def load_model_and_tokenizers():
@@ -17,19 +17,19 @@ def load_model_and_tokenizers():
     # Cargar los vocabularios
     train_pairs, _, _ = limpieza.load_and_prepare_data("./spa.txt")
     reserved_tokens = ["[PAD]", "[UNK]", "[START]", "[END]"]
-    chi_vocab, spa_vocab = tokenizacion.create_vocabs(train_pairs, reserved_tokens)
+    eng_vocab, spa_vocab = tokenizacion.create_vocabs(train_pairs, reserved_tokens)
     
     # Crear los tokenizadores
-    chi_tokenizer = keras_nlp.tokenizers.WordPieceTokenizer(vocabulary=chi_vocab, lowercase=False)
+    eng_tokenizer = keras_nlp.tokenizers.WordPieceTokenizer(vocabulary=eng_vocab, lowercase=False)
     spa_tokenizer = keras_nlp.tokenizers.WordPieceTokenizer(vocabulary=spa_vocab, lowercase=False)
     
-    return transformer, chi_tokenizer, spa_tokenizer
+    return transformer, eng_tokenizer, spa_tokenizer
 
-def decode_sequences(transformer, chi_tokenizer, spa_tokenizer, input_sentences):
+def decode_sequences(transformer, eng_tokenizer, spa_tokenizer, input_sentences):
     batch_size = 1
 
     # Tokenize the encoder input.
-    encoder_input_tokens = ops.convert_to_tensor(chi_tokenizer(input_sentences))
+    encoder_input_tokens = ops.convert_to_tensor(eng_tokenizer(input_sentences))
     if len(encoder_input_tokens[0]) < MAX_SEQUENCE_LENGTH:
         pads = ops.full((1, MAX_SEQUENCE_LENGTH - len(encoder_input_tokens[0])), 0)
         encoder_input_tokens = ops.concatenate(
@@ -59,14 +59,14 @@ def decode_sequences(transformer, chi_tokenizer, spa_tokenizer, input_sentences)
     generated_sentences = spa_tokenizer.detokenize(generated_tokens)
     return generated_sentences
 
-def translate(transformer, chi_tokenizer, spa_tokenizer, input_sentence):
+def translate(transformer, eng_tokenizer, spa_tokenizer, input_sentence):
     print(f"Input sentence: {input_sentence}")
     
     # Tokenize input
-    input_tokens = chi_tokenizer(input_sentence)
+    input_tokens = eng_tokenizer(input_sentence)
     print(f"Input tokens: {input_tokens}")
     
-    translated = decode_sequences(transformer, chi_tokenizer, spa_tokenizer, [input_sentence])
+    translated = decode_sequences(transformer, eng_tokenizer, spa_tokenizer, [input_sentence])
     translated = translated.numpy()[0].decode("utf-8")
     print(f"Raw translation: {translated}")
     
@@ -84,14 +84,14 @@ def translate(transformer, chi_tokenizer, spa_tokenizer, input_sentence):
     return translated
 
 def main():
-    transformer, chi_tokenizer, spa_tokenizer = load_model_and_tokenizers()
+    transformer, eng_tokenizer, spa_tokenizer = load_model_and_tokenizers()
     
     while True:
         input_sentence = input("Ingrese una frase en inglés para traducir (o 'q' para salir): ")
         if input_sentence.lower() == 'q':
             break
         
-        translated = translate(transformer, chi_tokenizer, spa_tokenizer, input_sentence)
+        translated = translate(transformer, eng_tokenizer, spa_tokenizer, input_sentence)
         print(f"Traducción: {translated}\n")
 
 if __name__ == "__main__":

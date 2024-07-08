@@ -5,9 +5,9 @@ EPOCHS = 2  # This should be at least 10 for convergence
 EMBED_DIM = 256
 INTERMEDIATE_DIM = 2048
 NUM_HEADS = 8
-CHI_VOCAB_SIZE = 15000
+ENG_VOCAB_SIZE = 15000
 SPA_VOCAB_SIZE = 15000
-MAX_SEQUENCE_LENGTH = 40
+MAX_SEQUENCE_LENGTH = 50
 
 #construccion del modelo
 def create_model():
@@ -15,7 +15,7 @@ def create_model():
     encoder_inputs = keras.Input(shape=(None,), name="encoder_inputs")
 
     x = keras_nlp.layers.TokenAndPositionEmbedding(
-        vocabulary_size=CHI_VOCAB_SIZE,
+        vocabulary_size=ENG_VOCAB_SIZE,
         sequence_length=MAX_SEQUENCE_LENGTH,
         embedding_dim=EMBED_DIM,
     )(encoder_inputs)
