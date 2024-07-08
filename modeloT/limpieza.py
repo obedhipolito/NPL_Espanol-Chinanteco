@@ -30,7 +30,7 @@ def print_data_stats(train_pairs, val_pairs, test_pairs):
     print(f"{len(test_pairs)} test pairs")
 
 def main():
-    text_file = "./spa.txt"
+    text_file = "..//esp_chi.txt"
     train_pairs, val_pairs, test_pairs = load_and_prepare_data(text_file)
     print_data_stats(train_pairs, val_pairs, test_pairs)
     return train_pairs, val_pairs, test_pairs

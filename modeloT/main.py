@@ -2,7 +2,7 @@ import limpieza
 import tokenizacion
 import formato
 import modelo
-from  kerasNPL.evaluacion import test_model
+
 
 def main():
     # Ejecutar el módulo limpieza

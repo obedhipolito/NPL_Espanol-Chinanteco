@@ -68,7 +68,7 @@ def test_model_cuantitative(transformer, eng_tokenizer, spa_tokenizer, test_pair
         input_sentence = test_pair[0]
         reference_sentence = test_pair[1]
 
-        translated_sentence = decode_sequences([input_sentence])
+        translated_sentence = decode_sequences(transformer, eng_tokenizer, spa_tokenizer, [input_sentence])
         translated_sentence = translated_sentence.numpy()[0].decode("utf-8")
         translated_sentence = (
             translated_sentence.replace("[PAD]", "")
