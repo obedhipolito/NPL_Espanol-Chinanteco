@@ -43,7 +43,7 @@ def readLangs(lang1, lang2, reverse=False):
     print("Reading lines...")
 
     # Read the file and split into lines
-    lines = open('%s-%s.txt' % (lang1, lang2), encoding='utf-8').\
+    lines = open('../%s-%s.txt' % (lang1, lang2), encoding='utf-8').\
         read().strip().split('\n')
 
     # Split every line into pairs and normalize
@@ -60,7 +60,7 @@ def readLangs(lang1, lang2, reverse=False):
 
     return input_lang, output_lang, pairs
 
-eng_prefixes = (
+esp_prefixes = (
     "i am ", "i m ",
     "he is", "he s ",
     "she is", "she s ",
@@ -72,7 +72,7 @@ eng_prefixes = (
 def filterPair(p):
     return len(p[0].split(' ')) < MAX_LENGTH and \
         len(p[1].split(' ')) < MAX_LENGTH and \
-        p[1].startswith(eng_prefixes)
+        p[1].startswith(esp_prefixes)
 
 
 def filterPairs(pairs):
@@ -92,5 +92,5 @@ def prepareData(lang1, lang2, reverse=False):
     print(output_lang.name, output_lang.n_words)
     return input_lang, output_lang, pairs
 
-input_lang, output_lang, pairs = prepareData('eng', 'fra', True)
+input_lang, output_lang, pairs = prepareData('esp', 'chi', True)
 print(random.choice(pairs))

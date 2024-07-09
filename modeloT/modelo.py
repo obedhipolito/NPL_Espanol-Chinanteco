@@ -5,8 +5,8 @@ EPOCHS = 2  # This should be at least 10 for convergence
 EMBED_DIM = 256
 INTERMEDIATE_DIM = 2048
 NUM_HEADS = 8
-ENG_VOCAB_SIZE = 15000
-SPA_VOCAB_SIZE = 15000
+ESP_VOCAB_SIZE = 15000
+CHI_VOCAB_SIZE = 15000
 MAX_SEQUENCE_LENGTH = 50
 
 #construccion del modelo
@@ -15,7 +15,7 @@ def create_model():
     encoder_inputs = keras.Input(shape=(None,), name="encoder_inputs")
 
     x = keras_nlp.layers.TokenAndPositionEmbedding(
-        vocabulary_size=ENG_VOCAB_SIZE,
+        vocabulary_size=ESP_VOCAB_SIZE,
         sequence_length=MAX_SEQUENCE_LENGTH,
         embedding_dim=EMBED_DIM,
     )(encoder_inputs)
@@ -31,7 +31,7 @@ def create_model():
     encoded_seq_inputs = keras.Input(shape=(None, EMBED_DIM), name="decoder_state_inputs")
 
     x = keras_nlp.layers.TokenAndPositionEmbedding(
-        vocabulary_size=SPA_VOCAB_SIZE,
+        vocabulary_size=CHI_VOCAB_SIZE,
         sequence_length=MAX_SEQUENCE_LENGTH,
         embedding_dim=EMBED_DIM,
     )(decoder_inputs)
@@ -40,7 +40,7 @@ def create_model():
         intermediate_dim=INTERMEDIATE_DIM, num_heads=NUM_HEADS
     )(decoder_sequence=x, encoder_sequence=encoded_seq_inputs)
     x = keras.layers.Dropout(0.5)(x)
-    decoder_outputs = keras.layers.Dense(SPA_VOCAB_SIZE, activation="softmax")(x)
+    decoder_outputs = keras.layers.Dense(CHI_VOCAB_SIZE, activation="softmax")(x)
     decoder = keras.Model(
         [
             decoder_inputs,

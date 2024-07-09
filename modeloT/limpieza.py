@@ -7,10 +7,10 @@ def load_and_prepare_data(text_file):
     for line in lines:
         parts = line.split("\t")
         if len(parts) == 2:
-            eng, spa = parts
-            eng = eng.lower()
-            spa = spa.lower()
-            text_pairs.append((eng, spa))
+            esp, chi = parts
+            esp = esp.lower()
+            chi = chi.lower()
+            text_pairs.append((esp, chi))
         else:
             print(f"Warning: Skipping malformed line: {line}")
 
@@ -30,7 +30,7 @@ def print_data_stats(train_pairs, val_pairs, test_pairs):
     print(f"{len(test_pairs)} test pairs")
 
 def main():
-    text_file = "..//esp_chi.txt"
+    text_file = "..//esp-chi.txt"
     train_pairs, val_pairs, test_pairs = load_and_prepare_data(text_file)
     print_data_stats(train_pairs, val_pairs, test_pairs)
     return train_pairs, val_pairs, test_pairs

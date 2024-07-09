@@ -10,7 +10,7 @@ def main():
     print("Limpieza de datos completada.")
     
     # Ejecutar el módulo tokenizacion
-    eng_vocab, spa_vocab = tokenizacion.main()
+    esp_vocab, chi_vocab = tokenizacion.main()
     print("prueba de Tokenización completada.")
 
     train_ds, val_ds = formato.main(train_pairs, val_pairs)
