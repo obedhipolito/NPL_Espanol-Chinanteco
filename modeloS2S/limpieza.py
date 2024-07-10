@@ -2,7 +2,7 @@ import unicodedata
 import re
 import random
 
-MAX_LENGTH = 10
+MAX_LENGTH = 180
 class Lang:
     def __init__(self, name):
         self.name = name
@@ -26,18 +26,19 @@ class Lang:
 
 # Turn a Unicode string to plain ASCII, thanks to
 # https://stackoverflow.com/a/518232/2809427
-def unicodeToAscii(s):
-    return ''.join(
-        c for c in unicodedata.normalize('NFD', s)
-        if unicodedata.category(c) != 'Mn'
-    )
+#def unicodeToAscii(s):
+#    return ''.join(
+#        c for c in unicodedata.normalize('NFD', s)
+#        if unicodedata.category(c) != 'Mn'
+#    )
 
 # Lowercase, trim, and remove non-letter characters
 def normalizeString(s):
-    s = unicodeToAscii(s.lower().strip())
-    s = re.sub(r"([.!?])", r" \1", s)
-    s = re.sub(r"[^a-zA-Z!?]+", r" ", s)
+    s = s.lower().strip()
+    s = re.sub(r"([.!?¿¡])", r" \1", s)
+    s = re.sub(r"[^a-z0-9ñáéíóúàèìòùâêîôπēīįėäëïöü!?]+", r" ", s)
     return s.strip()
+
 
 def readLangs(lang1, lang2, reverse=False):
     print("Reading lines...")
@@ -60,19 +61,16 @@ def readLangs(lang1, lang2, reverse=False):
 
     return input_lang, output_lang, pairs
 
-esp_prefixes = (
-    "i am ", "i m ",
-    "he is", "he s ",
-    "she is", "she s ",
-    "you are", "you re ",
-    "we are", "we re ",
-    "they are", "they re "
-)
+ #esp_prefixes = (
+#    "el ", "la ", "los ", "las ",
+#    "un ", "una ", "unos ", "unas ",
+#    "es ", "son ", "está ", "están "
+#)
 
 def filterPair(p):
     return len(p[0].split(' ')) < MAX_LENGTH and \
-        len(p[1].split(' ')) < MAX_LENGTH and \
-        p[1].startswith(esp_prefixes)
+        len(p[1].split(' ')) < MAX_LENGTH #and \
+        #p[0].startswith(esp_prefixes)
 
 
 def filterPairs(pairs):
@@ -83,6 +81,11 @@ def prepareData(lang1, lang2, reverse=False):
     print("Read %s sentence pairs" % len(pairs))
     pairs = filterPairs(pairs)
     print("Trimmed to %s sentence pairs" % len(pairs))
+    
+    with open('esp-chi.txt', 'w', encoding='utf-8') as f:
+        for pair in pairs:
+            f.write(f"{pair[0]}\t{pair[1]}\n")
+
     print("Counting words...")
     for pair in pairs:
         input_lang.addSentence(pair[0])
@@ -92,5 +95,5 @@ def prepareData(lang1, lang2, reverse=False):
     print(output_lang.name, output_lang.n_words)
     return input_lang, output_lang, pairs
 
-input_lang, output_lang, pairs = prepareData('esp', 'chi', True)
-print(random.choice(pairs))
+#input_lang, output_lang, pairs = prepareData('esp', 'chi', True)
+#print(random.choice(pairs))

@@ -2,6 +2,7 @@ import torch
 import numpy as np
 from torch.utils.data import TensorDataset, DataLoader, RandomSampler
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+import random
 
 
 from limpieza import MAX_LENGTH, prepareData
@@ -24,7 +25,8 @@ def tensorsFromPair(pair):
     return (input_tensor, target_tensor)
 
 def get_dataloader(batch_size):
-    input_lang, output_lang, pairs = prepareData('esp', 'chi', True)
+    input_lang, output_lang, pairs = prepareData('esp', 'chi', False)
+    print(random.choice(pairs))
 
     n = len(pairs)
     input_ids = np.zeros((n, MAX_LENGTH), dtype=np.int32)
@@ -43,4 +45,4 @@ def get_dataloader(batch_size):
 
     train_sampler = RandomSampler(train_data)
     train_dataloader = DataLoader(train_data, sampler=train_sampler, batch_size=batch_size)
-    return input_lang, output_lang, train_dataloader
+    return input_lang, output_lang, train_dataloader, pairs

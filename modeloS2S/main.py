@@ -3,7 +3,7 @@ import limpieza
 import modelo
 from formato import get_dataloader, batch_size, hidden_size, device, SOS_token, EOS_token
 from entrenamiento import train
-from evaluacion import evaluateRandomly
+#from evaluacion import evaluateRandomly
 
 from modelo import EncoderRNN, AttnDecoderRNN
 
@@ -15,9 +15,10 @@ def main():
 
     train(train_dataloader, encoder, decoder, 80, print_every=5, plot_every=5)
 
-    encoder.eval()
-    decoder.eval()
-    evaluateRandomly(encoder, decoder)
+    #ejecutar con evaluacion
+    #encoder.eval()
+    #decoder.eval()
+    #evaluateRandomly(encoder, decoder)
 
 if __name__ == "__main__":
     main()

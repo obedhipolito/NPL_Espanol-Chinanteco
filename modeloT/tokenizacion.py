@@ -1,5 +1,5 @@
 import keras_nlp
-import tensorflow.data as tf_data
+import tensorflow as tf
 import limpieza
 
 ESP_VOCAB_SIZE = 15000
@@ -7,7 +7,7 @@ CHI_VOCAB_SIZE = 15000
 
 # Función para entrenar el tokenizador
 def train_word_piece(text_samples, vocab_size, reserved_tokens):
-    word_piece_ds = tf_data.Dataset.from_tensor_slices(text_samples)
+    word_piece_ds = tf.data.Dataset.from_tensor_slices(text_samples)
     vocab = keras_nlp.tokenizers.compute_word_piece_vocabulary(
         #mantener de los datos de entrenamiento, batch es el tamaño de la muestra y prefetch es el número de muestras que se pueden cargar en memoria
         word_piece_ds.batch(1000).prefetch(4),
@@ -28,10 +28,11 @@ def create_vocabs(train_pairs, reserved_tokens):
 
 # Función para tokenizar
 def tokenize_examples(esp_vocab, chi_vocab, text_pairs):
+    #se asignan los tokenizadores a las variables esp_tokenizer y chi_tokenizer
     esp_tokenizer = keras_nlp.tokenizers.WordPieceTokenizer(
-    vocabulary=esp_vocab, lowercase=False)
+    vocabulary=esp_vocab, lowercase=False, strip_accents=False, split=True, split_on_cjk=False, suffix_indicator='##', oov_token='[UNK]')
     chi_tokenizer = keras_nlp.tokenizers.WordPieceTokenizer(
-    vocabulary=chi_vocab, lowercase=False)
+    vocabulary=chi_vocab, lowercase=False, strip_accents=False, split=True, split_on_cjk=False, suffix_indicator='##', oov_token='[UNK]', dtype='string')
     
 	#realizar la tokenización de los ejemplos y mostrar los tokens y el texto recuperado después de la detokenización
     esp_input_ex = text_pairs[0][0]

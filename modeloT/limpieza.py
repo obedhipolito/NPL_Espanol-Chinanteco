@@ -13,7 +13,11 @@ def load_and_prepare_data(text_file):
             text_pairs.append((esp, chi))
         else:
             print(f"Warning: Skipping malformed line: {line}")
-
+        
+    cleaned_text = [pair[1] for pair in text_pairs]
+    with open("cleaned_text.txt", "w") as f:
+        f.write("\n".join(cleaned_text))
+    
     random.shuffle(text_pairs)
     num_val_samples = int(0.15 * len(text_pairs))
     num_train_samples = len(text_pairs) - 2 * num_val_samples
