@@ -8,7 +8,7 @@ from entrenamiento import train
 from modelo import EncoderRNN, AttnDecoderRNN
 
 def main():
-    input_lang, output_lang, train_dataloader = get_dataloader(batch_size)
+    input_lang, output_lang, train_dataloader, pairs= get_dataloader(batch_size)
 
     encoder = EncoderRNN(input_lang.n_words, hidden_size).to(device)
     decoder = AttnDecoderRNN(hidden_size, output_lang.n_words).to(device)

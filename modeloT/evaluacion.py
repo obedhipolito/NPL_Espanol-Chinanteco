@@ -5,7 +5,6 @@ import keras_nlp
 import tokenizacion
 import limpieza
 
-MAX_SEQUENCE_LENGTH = 100
 
 def decode_sequences(transformer, esp_tokenizer, chi_tokenizer, input_sentences):
     batch_size = 1

@@ -2,7 +2,7 @@ import unicodedata
 import re
 import random
 
-MAX_LENGTH = 10
+MAX_LENGTH = 100
 class Lang:
     def __init__(self, name):
         self.name = name
@@ -92,5 +92,5 @@ def prepareData(lang1, lang2, reverse=False):
     print(output_lang.name, output_lang.n_words)
     return input_lang, output_lang, pairs
 
-input_lang, output_lang, pairs = prepareData('eng', 'fra', True)
-print(random.choice(pairs))
+#input_lang, output_lang, pairs = prepareData('eng', 'fra', True)
+#print(random.choice(pairs))

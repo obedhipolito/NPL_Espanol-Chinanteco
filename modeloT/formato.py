@@ -4,13 +4,6 @@ import keras_nlp
 import limpieza
 import tokenizacion
 
-MAX_SEQUENCE_LENGTH = 100
-#numero de pasos
-BATCH_SIZE = 40
-
-esp_tokenizer = None
-chi_tokenizer = None
-
 def preprocess_batch(esp, chi):
     
     global esp_tokenizer, chi_tokenizer

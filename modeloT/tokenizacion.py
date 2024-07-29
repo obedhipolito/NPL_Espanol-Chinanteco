@@ -2,9 +2,6 @@ import keras_nlp
 import tensorflow as tf
 import limpieza
 
-ESP_VOCAB_SIZE = 15000
-CHI_VOCAB_SIZE = 15000
-
 # Función para entrenar el tokenizador
 def train_word_piece(text_samples, vocab_size, reserved_tokens):
     word_piece_ds = tf.data.Dataset.from_tensor_slices(text_samples)
@@ -32,7 +29,7 @@ def tokenize_examples(esp_vocab, chi_vocab, text_pairs):
     esp_tokenizer = keras_nlp.tokenizers.WordPieceTokenizer(
     vocabulary=esp_vocab, lowercase=False, strip_accents=False, split=True, split_on_cjk=False, suffix_indicator='##', oov_token='[UNK]')
     chi_tokenizer = keras_nlp.tokenizers.WordPieceTokenizer(
-    vocabulary=chi_vocab, lowercase=False, strip_accents=False, split=True, split_on_cjk=False, suffix_indicator='##', oov_token='[UNK]', dtype='string')
+    vocabulary=chi_vocab, lowercase=False, strip_accents=False, split=True, split_on_cjk=False, suffix_indicator='##', oov_token='[UNK]')
     
 	#realizar la tokenización de los ejemplos y mostrar los tokens y el texto recuperado después de la detokenización
     esp_input_ex = text_pairs[0][0]

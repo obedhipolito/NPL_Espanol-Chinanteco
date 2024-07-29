@@ -8,8 +8,9 @@ import random
 from limpieza import MAX_LENGTH, prepareData
 SOS_token = 0
 EOS_token = 1
-batch_size = 20
-hidden_size = 70
+batch_size = 30
+#capas ocultas
+hidden_size = 100
 
 def indexesFromSentence(lang, sentence):
     return [lang.word2index[word] for word in sentence.split(' ')]
@@ -25,7 +26,7 @@ def tensorsFromPair(pair):
     return (input_tensor, target_tensor)
 
 def get_dataloader(batch_size):
-    input_lang, output_lang, pairs = prepareData('esp', 'chi', False)
+    input_lang, output_lang, pairs = prepareData('esp', 'chi', True)
     print(random.choice(pairs))
 
     n = len(pairs)
@@ -39,6 +40,13 @@ def get_dataloader(batch_size):
         tgt_ids.append(EOS_token)
         input_ids[idx, :len(inp_ids)] = inp_ids
         target_ids[idx, :len(tgt_ids)] = tgt_ids
+    
+    print("Sample tokenization for first 5 pairs:")
+    for i in range(5):
+        print(f"Input sentence: {pairs[i][0]}")
+        print(f"Token IDs: {input_ids[i]}")
+        print(f"Target sentence: {pairs[i][1]}")
+        print(f"Token IDs: {target_ids[i]}")
 
     train_data = TensorDataset(torch.LongTensor(input_ids).to(device),
                                torch.LongTensor(target_ids).to(device))

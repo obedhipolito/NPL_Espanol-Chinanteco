@@ -1,2 +1,0 @@
-keras==2.15.0
-keras_nlp

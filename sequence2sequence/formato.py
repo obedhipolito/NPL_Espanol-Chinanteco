@@ -43,4 +43,4 @@ def get_dataloader(batch_size):
 
     train_sampler = RandomSampler(train_data)
     train_dataloader = DataLoader(train_data, sampler=train_sampler, batch_size=batch_size)
-    return input_lang, output_lang, train_dataloader
+    return input_lang, output_lang, train_dataloader, pairs

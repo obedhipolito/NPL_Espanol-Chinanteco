@@ -7,7 +7,7 @@ import time
 import math
 import torch
 
-def save_model(encoder, decoder, save_path='./model.pth'):
+def save_model(encoder, decoder, save_path):
     torch.save({
         'encoder_state_dict': encoder.state_dict(),
         'decoder_state_dict': decoder.state_dict(),
@@ -79,7 +79,7 @@ def train(train_dataloader, encoder, decoder, n_epochs, learning_rate=0.001,
             plot_loss_total = 0
 
     showPlot(plot_losses)
-    save_model(encoder, decoder, save_path)
+    save_model(encoder, decoder, save_path='./model.pth')
     
 def showPlot(points):
     plt.figure()

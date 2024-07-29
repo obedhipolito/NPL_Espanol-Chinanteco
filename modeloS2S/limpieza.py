@@ -2,7 +2,7 @@ import unicodedata
 import re
 import random
 
-MAX_LENGTH = 180
+MAX_LENGTH = 10
 class Lang:
     def __init__(self, name):
         self.name = name
@@ -93,6 +93,12 @@ def prepareData(lang1, lang2, reverse=False):
     print("Counted words:")
     print(input_lang.name, input_lang.n_words)
     print(output_lang.name, output_lang.n_words)
+    
+    print("Sample tokenization:")
+    for i in range(5):
+        print(pair[0], "->", [input_lang.word2index[word] for word in pair[0].split(' ')])
+        print(pair[1], "->", [output_lang.word2index[word] for word in pair[1].split(' ')])
+    
     return input_lang, output_lang, pairs
 
 #input_lang, output_lang, pairs = prepareData('esp', 'chi', True)
