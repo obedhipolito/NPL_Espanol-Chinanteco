@@ -15,16 +15,16 @@ plt.switch_backend('agg')
 import matplotlib.ticker as ticker
 import numpy as np
 
-import numpy as np
 from torch.utils.data import TensorDataset, DataLoader, RandomSampler
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 SOS_token = 0
 EOS_token = 1
-MAX_LENGTH = 180
-hidden_size = 128
-batch_size = 32
+MAX_LENGTH = 150
+hidden_size = 256
+batch_size = 62
+epoch_number = 50
 
 class Lang:
     def __init__(self, name):
@@ -47,17 +47,17 @@ class Lang:
         else:
             self.word2count[word] += 1
 
-def unicodeToAscii(s):
+'''def unicodeToAscii(s):
     return ''.join(
         c for c in unicodedata.normalize('NFD', s)
         if unicodedata.category(c) != 'Mn'
-    )
+    )'''
 
 # Lowercase, trim, and remove non-letter characters
 def normalizeString(s):
     s = s.lower().strip()
-    s = re.sub(r"([.!?¿¡])", r" \1", s)
-    s = re.sub(r"[^a-z0-9ñáéíóúàèìòùâêîôπēīįėäëïöü!?]+", r" ", s)
+    s = re.sub(r"([.!?¿¡,])", r" \1", s)
+    s = re.sub(r"[^a-z0-9ñáéíóúàèìòùâêîôπēīįėäëïöü¥']+", r" ", s)
     return s.strip()
 
 def readLangs(lang1, lang2, reverse=False):
@@ -367,7 +367,7 @@ encoder = EncoderRNN(input_lang.n_words, hidden_size).to(device)
 decoder = AttnDecoderRNN(hidden_size, output_lang.n_words).to(device)
 
 # parametros de entrenamiento
-train(train_dataloader, encoder, decoder, 25, print_every=5, plot_every=5)
+train(train_dataloader, encoder, decoder, epoch_number, print_every=5, plot_every=5)
 
 encoder.eval()
 decoder.eval()
@@ -388,7 +388,7 @@ def showAttention(input_sentence, output_words, attentions):
     ax.xaxis.set_major_locator(ticker.MultipleLocator(1))
     ax.yaxis.set_major_locator(ticker.MultipleLocator(1))
 
-    plt.show()
+    plt.savefig('attention.png')
 
 
 def evaluateAndShowAttention(input_sentence):
@@ -398,6 +398,6 @@ def evaluateAndShowAttention(input_sentence):
     showAttention(input_sentence, output_words, attentions[0, :len(output_words), :])
 
 
-evaluateAndShowAttention("Kià ñà sôī Mayo")
+evaluateAndShowAttention("jm kiä kià nà sêi mayo")
 
-evaluateAndShowAttention("A'äi ajuö tá lajeī jπ")
+evaluateAndShowAttention("a'äi ajuö tá lajeī jπ")

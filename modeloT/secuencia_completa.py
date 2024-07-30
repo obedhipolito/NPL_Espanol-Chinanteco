@@ -13,8 +13,8 @@ from tensorflow_text.tools.wordpiece_vocab import (
 #parametros
 BATCH_SIZE = 64
 batch_size = 64
-EPOCHS = 25 # This should be at least 10 for convergence
-MAX_SEQUENCE_LENGTH = 180
+EPOCHS = 10 # This should be at least 10 for convergence
+MAX_SEQUENCE_LENGTH = 60
 ENG_VOCAB_SIZE = 15000
 CHI_VOCAB_SIZE = 15000
 EMBED_DIM = 256
@@ -28,10 +28,13 @@ with open(text_file) as f:
     lines = f.read().split("\n")[:-1]
 text_pairs = []
 for line in lines:
-    eng, chi = line.split("\t")
-    eng = eng.lower()
-    chi = chi.lower()
-    text_pairs.append((eng, chi))
+    try:
+        eng, chi = line.split("\t")
+        eng = eng.lower()
+        chi = chi.lower()
+        text_pairs.append((eng, chi))
+    except ValueError:
+        print(f"Error en la linea: {line}")
 
 for _ in range(5):
     print(random.choice(text_pairs))
@@ -218,7 +221,7 @@ def decode_sequences(input_sentences):
         return logits, hidden_states, cache
 
     # Build a prompt of length 40 with a start token and padding tokens.
-    length = 20
+    length = 40
     start = ops.full((batch_size, 1), chi_tokenizer.token_to_id("[START]"))
     pad = ops.full((batch_size, length - 1), chi_tokenizer.token_to_id("[PAD]"))
     prompt = ops.concatenate((start, pad), axis=-1)

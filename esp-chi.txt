@@ -1,5 +1,4 @@
 No.	Asià.
-Mes. Sêi.
 De.	Kie'.
 Un.	Jä.
 Tirado.	tikâī
@@ -52,6 +51,7 @@ Hoy.	Nè.
 Mucho.	Liö.
 Hace.	Jüoi.
 Mes.	Sėi.
+Mes.	Sêi.
 Gente.	Chie.
 Padre.	Jmaī.
 Piedra.	Mkäü.
@@ -116,7 +116,7 @@ Un rato.	kö' leè.
 No respeto.	Sàmakò.
 Mientras.	ta, là.
 Dónde Trabajaba.	Imàjuö tá.
-Mi madre. Sià jnià.
+Mi madre.	Sià jnià.
 Entonce.	jö
 Regresara.	Jyô.
 Se cayó.	Akäi'.
@@ -188,10 +188,9 @@ Cuando llego el dia.	Kö mà tyiè jm.
 El hombre de la cueva.	Añii kiä tò nòò.
 Lo que se dice.	Jau sià
 El maestro es el sembrador de los conocimientos del saber y se desvela por preparar sus clases y se preocupa por los niños.	atêī ajnei lajeī waeitsei tsei ikö' lajäī simaì Asià pm' ijuöi lajeī majyi kie' jüoi liö waitsei tsei kie' simai.
-Hoy 15 de mayo día del maestro todo México conmemora el día del maestro.	Nè kiä kià ñà sêi Mayo jm kie' lajäī atêī
-Làtâ gò jπ kie' lajäī atêī.
+Hoy quince de mayo día del maestro todo México conmemora el día del maestro.	Nè kiä kià ñà sêi Mayo jm kie' lajäī atêīn Làtâ gò jπ kie' lajäī atêī.
 El trabajador incansable. el maestro se prepara cada día,para heredar mejores conocimientos, para los niños de México.	A'äi ajuö tá lajeī jπ. A’têī lajeī k, pà matäī kä' lajö kuói waeitsei kie' ikö' simai pei ikö lajäī asiâ gò jπ.
-El día 15 de mayo, día del maestro sin compensación por ser su día, sigue trabajando, y al mismo tiempo es criticado por exigir un salario justo para una educación justa.	Jm kiä kià nà sêi Mayo, jm kie' lajäī Atêī jm jö ikö isià iyei iku'oo jeù Jüoi tá, 'lê chie jau la¥ kiì lío nëi kie' imm', ilì liäì kaleù liö kä lajö silèi ko'rè ño' lajeì tá.
+El día quince de mayo, día del maestro sin compensación por ser su día, sigue trabajando, y al mismo tiempo es criticado por exigir un salario justo para una educación justa.	Jm kiä kià nà sêi Mayo, jm kie' lajäī Atêī jm jö ikö isià iyei iku'oo jeù Jüoi tá, 'lê chie jau la¥ kiì lío nëi kie' imm', ilì liäì kaleù liö kä lajö silèi ko'rè ño' lajeì tá.
 Cuando se acercaba el día de los muertos un niño le dijo a su papá ¿No vas a poner ofrenda de muertos? Porque va venir mi mamá en ese día.	LateĪ má'loò jm kie' ajäü, jö ajua jä apéi asaî jmaī i ¿ o' asià tyà niyiè lajeī ikie' ajäu? kie' tà Ià jyô sià jnià jm jö.
 Yo no voy hacer nada, tu madre siempre estuvo en la cocina, que venga a ver la piedra del fuego que es ahí donde siempre estuvo en vida.	Asià juô, siè nëi lajeī jm pà si sâi jé jyí, wajyöī nià jeì mkäü pá kie itìniè jé jyí imàjuö tá.
 Así que cuando llegó el día dos de noviembre, día de muertos se llevó a su hijo al campo a trabajar con él.	Kö mà tyiè jm kiä teü sēī Noviembre, jm kië ajäü, jö jyaī ajö ngôi jé.
@@ -222,9 +221,9 @@ Tuvieron que buscar al curandero, el curandero le dijo que el niño se había as
 Por eso no hay que permitir que los niños anden en lugares solitarios.	tié là jeù nëi, asié mà kuo'jeu ingëī apei jö ñââ.
 Canción de la luna, que salga la luna, no le hagas caso a este hombrecito, Salga la luna vámonos de una vez, Este hombre es un caminante.	Sëü kie' jä sēi, Wà i aī sēī nè, arô nëi jeu yëi pei là, Jau sēī mà kiä kötâ, Añii Ià a ngêī jeu juö pà là.
 Que salga la luna en su totalidad salga la luna vámonos de una vez,Salga la luna, a este hombre no salga la luna vámonos de una vez.	Wà i aī sēī la tâ jau sēī mà kiä kötâ, Jau sēī, ajô ikö añii là, jau sēī, mà kiä kötâ.
-Los moradores de la región Usileña, Quienes vivieron anteriormente, se vestían de calzón de manta los hombres y las mujeres se vestían de huipil que ellas mismas tejían.
-no había personas que usaran pantalón y antes de empezar la semana mayor.
-su diversión era el baile del carnaval en donde bailaban los hombres vestidos de huipil, cubierto con pañuelo rojo y sombrero en sus cabezas, y hablaban en chinanteco porque no había personas bilingües en ese tiempo.
-Muchas de estas cosas ya no se hacen ahora y los jóvenes ya no quieren hablar su lengua y las señoritas ya no se visten de huipil.
-Es importante rescatar las costumbres y las tradiciones de nuestros antepasados.
-porque solamente de esta manera el pueblo indígena se identifica y sobre todo la lengua no se debe perder porque es una herencia primordial de nuestros padres.
+Los moradores de la región Usileña, Quienes vivieron anteriormente, se vestían de calzón de manta los hombres y las mujeres se vestían de huipil que ellas mismas tejían.	Lajäī chie amakichiä a'äi asiä je' jeu jëi. liö mài īsei matäī kiì, Añii mà si éi apm' ki' itéi apm' yèi, lajäī amπ tiô mà si éi amajau yëi, ijö imajuöi tiöi.
+no había personas que usaran pantalón y antes de empezar la semana mayor.	asiä chie masiä atiö apm' ikie' tiè là, latèi raliè jm tà éé.
+su diversión era el baile del carnaval en donde bailaban los hombres vestidos de huipil, cubierto con pañuelo rojo y sombrero en sus cabezas, y hablaban en chinanteco porque no había personas bilingües en ese tiempo.	jö mà ma'lili jä kie' asièlià, ijö imachiè añii tiö i ëi amajaù iéi ukuà nëi, ñà liè apä yëi matyi ñà éi aujyi matyi' lia, lajäi tiöi 'lēi jau jm, asià jau ni' ma'lēi jm jö.
+Muchas de estas cosas ya no se hacen ahora y los jóvenes ya no quieren hablar su lengua y las señoritas ya no se visten de huipil.	Jm itiè tò nè Ià asié Ià nè màleī, asié ma i'lēi jau jm kie', asié si éi amajau.
+Es importante rescatar las costumbres y las tradiciones de nuestros antepasados.	Tié Ia nià mako' lajetī inè, kie' tà là leī kö itseèi.
+porque solamente de esta manera el pueblo indígena se identifica y sobre todo la lengua no se debe perder porque es una herencia primordial de nuestros padres.	nia' ilē jau jm kiâ, nia' juö lajeī itsèi ikö' lajätī adö tiö, kie' kö' juà inè a'loó itsei ikö jnia.
